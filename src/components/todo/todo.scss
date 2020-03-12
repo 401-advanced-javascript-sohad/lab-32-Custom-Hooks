@@ -1,146 +1,126 @@
-body {
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 600px 600px;
-    background-repeat:no-repeat;
-}
-
-
 body, html {
-    height: 100%;
-    margin: 0;
-    padding:0;
-    width: 100%;
+  height: 100%;
+  margin: 0;
+  padding:0;
+  width: 100%;
+  background-color: cadetblue;
+}
+header{
+  h2{
+      font-size: xx-large;
+      font-family: monospace;
+      color: blueviolet;
+      text-align: center;
+  }
+}
+h1{
+  text-align: center;
+  color: black;
+  font-size: xx-large;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+footer{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  p{
+      font-size: large;
+      font-family: 'Courier New', Courier, monospace;
+      width: 100%;
+   text-align: center;
+
+  }
 }
 .todo-details {
-    display:flex;
-    flex-direction:column;
+  display:flex;
+  flex-direction:column;
 
-    header {
-        display:flex;
-        flex-direction:row;
-        justify-content:space-between;
-        padding:.5em 1em;
-    }
+  header {
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      padding:.5em 1em;
+  }
 
-    .item {
-        flex:1;
-        padding: 1em;
-    }
-
-}
-h3, h1{
-    margin-left:50px;
-    margin-top: 50px; 
-
-}
-
-
-footer{
-    margin-left:50px;
-    margin-top: 50px; 
+  .item {
+      flex:1;
+      padding: 1em;
+  }
 
 }
 
 .todo {
 
-    display:flex;
-    flex-direction:row;
-    justify-content: flex-start;
-    margin-left: 50px;
+  display:flex;
+  flex-direction:row;
+  justify-content: flex-start;
+  margin: 2em;
+  h3{
+      margin-left: 50px;
+      font-size:x-large ;
+  }
+  form {
+      display:flex;
+      flex-direction:column;
+      margin-right: 2em;
+      border: solid green 2px;
+      padding: 10px;
+      margin-right: 200px;
+      label {
+          display: flex;
+          flex-direction:column;
+          margin-bottom: 1em;
+          padding: 10px;
+      }
+  }
 
-    form {
-        font-size: 20px;
-        display:flex;
-        flex-direction:column;
-        margin-right: 2em;
+  ul {
+      list-style-type:none;
+      margin:0;
+      padding:0;
 
-        label {
-            display: flex;
-            flex-direction:column;
-            margin-bottom: 1em;
+      li {
 
-            input{
-                position: relative;
-                width: 300px;
-                padding: 12px 20px;
-                margin: 8px 0;
-                box-sizing: border-box;
-                &:hover {
-                    background: rgb(204, 202, 202);
-                    color: black
-                }
-            }
-        }
+          align-items: center;
+          display:flex;
+          flex-direction:row;
+          font-size: .75em;
+          margin: .75em .5em;
 
-        #add{
-            border: none;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            background-color:rgb(231, 209, 209) ;
-            &:hover {
-                background: rgb(22, 1, 1);
-                color: white
-            }
-        }
-    }
-
-    ul {
-        list-style-type:none;
-        margin:0;
-        padding:0;
-
-        li {
-
-            align-items: center;
-            display:flex;
-            flex-direction:row;
-            font-size: .75em;
-            margin: .75em .5em;
-
-            &.complete-true {
-              span {
-                background: pink;
-                text-decoration:line-through;
-                &:hover {
-                   background: seagreen;
-                }
+          &.complete-true {
+            span {
+              background: pink;
+              text-decoration:line-through;
+              &:hover {
+                 background: seagreen;
               }
             }
+          }
 
+          span {
+              background: #e0e0e0;
+              cursor:pointer;
+              &:hover {
+                  background: pink;
+              }
+          }
+           span, input {
+               border: .5px solid #eee;
+               display:inline-block;
+               padding: .2em .25em;
+               width: 300px;
+           }
 
-            span {
-                background: #e0e0e0;
-                cursor:pointer;
-                &:hover {
-                    background: pink;
-                }
-            }
+          button {
+              background: transparent;
+              border:none;
+              color:blue;
+              cursor:pointer;
+              padding:0;
+              margin: 0 .75em;
+          }
 
-         
-             span, input {
-                 border: .5px solid #eee;
-                 display:inline-block;
-                 padding: .2em .25em;
-                 width: 200px;
-                 height: 20px;
-                 font-size: 20px;
-             }
-
-            button {
-                background: transparent;
-                border:none;
-                color:blue;
-                cursor:pointer;
-                padding:0;
-                margin: 0 .75em;
-                font-size: 20px;
-
-            }
-
-        }
-    }
+      }
+  }
 
 }

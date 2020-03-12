@@ -1,6 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
+
 import App from './app.js';
 
-ReactDom.render(<App />, document.getElementById('root'));
+function Main () {
+  return <App />;
+}
+
+ReactDOM.render(<Main /> , document.getElementById('root'));

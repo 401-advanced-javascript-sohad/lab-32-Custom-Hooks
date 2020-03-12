@@ -5,9 +5,9 @@
 
 ### Links and Resources
 
-- [submission PR]()
+- [submission PR](https://github.com/401-advanced-javascript-sohad/lab-32-Custom-Hooks/pull/1)
 
-[ci/cd]() (GitHub Actions)
+[ci/cd](https://github.com/401-advanced-javascript-sohad/lab-32-Custom-Hooks/actions) (GitHub Actions)
 
 ### Setup
 

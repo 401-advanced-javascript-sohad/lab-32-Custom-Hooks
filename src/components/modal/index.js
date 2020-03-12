@@ -1,17 +1,15 @@
 /* eslint-disable no-unused-vars */
-
 import React from 'react';
 
-// import styles from './modal.module.scss';
+import styles from './modal.module.scss';
 
 const Modal = props => {
   return (
-  // <div className={styles.modal}>
-    <div>
+    <div className={styles.modal}>
       <div>
-        <header >
+        <header>
           <span className="title">{props.title}</span>
-          <button className="close" onClick={props.close}>X</button>
+          <button onClick={props.close}>X</button>
         </header>
         <div>{props.children}</div>
       </div>

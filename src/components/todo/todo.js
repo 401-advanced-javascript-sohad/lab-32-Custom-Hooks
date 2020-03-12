@@ -1,95 +1,67 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-undefined */
 
 import React,{useState, useEffect} from 'react';
+import uuid from 'uuid/v4';
 import { When } from '../if';
 import Modal from '../modal';
+import Header from '../header/header.js';
 
 import './todo.scss';
 
-const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
-
 function ToDo (props) {
-  const[todoList, setTodoList] = useState([]);
-  const[item, setItem] = useState({});
-  const[showDetails, setShowDetails] = useState(false);
-  const[details, setDetails] = useState({});
-
+  const [todoList, setTodoList] = useState([]);
+  const [item, setItem] = useState({});
+  const [showDetails, setShowDetails] = useState(false);
+  const [details, setDetails] = useState({});
 
   const handleInputChange = e => {
-    setItem({ ...item, [e.target.name]: e.target.value });
-    console.log('test',item);
+    setItem( {...item, [e.target.name]: e.target.value} );
   };
 
-  const callAPI = (url, method = 'get', body, handler, errorHandler) => {
-
-    return fetch(url, {
-      method: method,
-      mode: 'cors',
-      cache: 'no-cache',
-      headers: { 'Content-Type': 'application/json' },
-      body: body ? JSON.stringify(body) : undefined,
-    })
-      .then(response => response.json())
-      .then(data => typeof handler === 'function' ? handler(data) : null )
-      .catch( (e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e)  );
+  const handleSubmit = (e) => {
+    props.handleSubmit(item);
   };
 
   const addItem = (e) => {
 
     e.preventDefault();
     e.target.reset();
+    const defaults = { _id: uuid(), complete:false };
+    const newItem = Object.assign({}, item, defaults);
 
-    const _updateState = newItem =>
-      setTodoList([...todoList, newItem]);
-
-    callAPI( todoAPI, 'POST', item, _updateState );
-
+    setTodoList([...todoList, newItem]);
+    setItem({});
   };
 
   const deleteItem = id => {
-
-    const _updateState = (results) =>
-      setTodoList(todoList.filter(item => item._id !== id));
-
-    callAPI( `${todoAPI}/${id}`, 'DELETE', undefined, _updateState );
-
+    setTodoList(todoList.filter(item => item._id !== id));
   };
 
   const saveItem = updatedItem => {
 
-    const _updateState = (newItem) =>
-      setTodoList(todoList.map(item => item._id === newItem._id ? newItem : item));
-
-    callAPI( `${todoAPI}/${updatedItem.id}`, 'PUT', updatedItem, _updateState );
+    setTodoList(todoList.map(item =>
+      item._id === updatedItem._id ? updatedItem : item),
+    );
 
   };
 
   const toggleComplete = id => {
-    let newitem = todoList.filter(i => i._id === id)[0] || {};
-    if (newitem._id) {
-      newitem.complete = !newitem.complete;
-      saveItem(newitem);
+    let newItem = todoList.filter(i => i._id === id)[0] || {};
+    if (newItem._id) {
+      newItem.complete = !newItem.complete;
+      saveItem(newItem);
     }
   };
 
   const toggleDetails = id => {
-    setShowDetails(! showDetails);
+    setShowDetails(!showDetails);
     setDetails(todoList.filter( item => item._id === id )[0] || {});
   };
 
-  const getTodoItems = () => {
-    const _updateState = data => setTodoList(data.results);
-    callAPI( todoAPI, 'GET', undefined, _updateState );
-  };
-
-  useEffect (() => {
-    getTodoItems();
-  },getTodoItems);
   return (
     <>
       <header>
-        <h1>To Do App</h1>
+        <Header />
       </header>
 
       <section className="todo">
@@ -103,20 +75,19 @@ function ToDo (props) {
                 name="text"
                 placeholder="Add To Do List Item"
                 onChange={handleInputChange}
-                required
               />
             </label>
             <label>
               <span>Difficulty Rating</span>
-              <input type="range" min="1" max="5" name="difficulty" defaultValue="3" onChange={handleInputChange} required />
+              <input type="range" min="1" max="5" name="difficulty" defaultValue="3" onChange={handleInputChange} />
             </label>
             <label>
               <span>Assigned To</span>
-              <input type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} required />
+              <input type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
             </label>
             <label>
               <span>Due</span>
-              <input type="date" name="due" onChange={handleInputChange} required/>
+              <input type="date" name="due" onChange={handleInputChange} />
             </label>
             <button>Add Item</button>
           </form>
@@ -150,7 +121,7 @@ function ToDo (props) {
           </ul>
         </div>
       </section>
-      {console.log(details)}
+
       <When condition={showDetails}>
         <Modal title="To Do Item" close={toggleDetails}>
           <div className="todo-details">
