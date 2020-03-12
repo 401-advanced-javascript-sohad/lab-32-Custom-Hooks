@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/401-advanced-javascript-sohad/lab-32-Custom-Hooks/issues"
   },
-  "homepage": "https://github.com/401-advanced-javascript-sohad/lab-32-Custom-Hooks#readme",
+  "homepage": "https://github.com/401-advanced-javascript-sohad/lab-32-Custom-Hooks",
   "dependencies": {
     "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
